@@ -309,19 +309,23 @@
   }
 
   async function ensureCompanyEditors() {
-    if (companySectionLoaded() && faqQuestions().length) return true;
+    if (companySectionLoaded() && faqQuestions().length && textDescLoaded()) return true;
     try {
       await runtimeSendMessage({ type: 'alibaba_mount_company_editors' }, 8000);
     } catch (error) {}
     for (let attempt = 0; attempt < 12; attempt++) {
-      if (companySectionLoaded()) return true;
+      if (companySectionLoaded() && textDescLoaded()) return true;
       await sleep(120);
     }
-    return companySectionLoaded();
+    return companySectionLoaded() && textDescLoaded();
   }
 
   function companySectionLoaded() {
     return !!document.querySelector('#struct-companyDesc textarea');
+  }
+
+  function textDescLoaded() {
+    return !!document.querySelector('#struct-textDesc .text-area-list-editor[contenteditable="true"]');
   }
 
   function firstVisible(selector) {
@@ -434,6 +438,7 @@
     add({ id: 'price_max', group: '交易信息', label: '最高价', selector: 'input[placeholder="请输入最高价"]', value: draft.price?.reference_range?.max ?? defaults.price_max });
     add({ id: 'gross_weight', group: '物流信息', label: '毛重 (KG/Piece)', selector: 'input#pkgWeight', value: draft.packaging?.weight || defaults.gross_weight_kg });
 
+    add({ id: 'text_desc', group: '商品详情', label: '商品卖点', kind: 'contenteditable', selector: '#struct-textDesc .text-area-list-editor[contenteditable="true"]', value: (draft.selling_points || []).join('\n'), maxLength: 2000 });
     add({ id: 'company_desc', group: '公司信息', label: '公司介绍', selector: '#struct-companyDesc textarea', value: cfg.company_description, maxLength: 2000 });
     normalizeFaqs(cfg.company_faqs).forEach((faq, index) => {
       add({ id: 'faq_q_' + index, group: '公司信息', label: 'FAQ Q' + (index + 1), kind: 'faq', faqIndex: index, faqField: 'question', value: faq.question, maxLength: 150 });
@@ -467,6 +472,13 @@
       } else {
         row.current = input.value == null ? '' : input.value;
       }
+      return;
+    }
+    if (row.kind === 'contenteditable') {
+      const el = firstVisible(row.selector);
+      row.el = el;
+      row.matched = !!el;
+      row.current = el ? (el.innerText || '').trim() : '';
       return;
     }
     const el = firstVisible(row.selector);
@@ -985,6 +997,16 @@
   async function fillGenericRow(row) {
     let el = firstVisible(row.selector);
     if (!el) throw new Error('element not found');
+    if (row.kind === 'contenteditable') {
+      const lines = String(row.value).split(/\r?\n/).map(line => line.trim()).filter(Boolean);
+      el.innerHTML = '<ul>' + lines.map(line => '<li>' + esc(line) + '</li>').join('') + '</ul>';
+      el.dispatchEvent(new Event('input', { bubbles: true }));
+      await sleep(700);
+      el = firstVisible(row.selector);
+      row.el = el;
+      row.current = el ? (el.innerText || '').trim() : '';
+      return !!el && sameValue(row.value, row.current);
+    }
     setNativeValue(el, String(row.value));
     await sleep(220);
     el = firstVisible(row.selector);
@@ -1035,24 +1057,24 @@
   async function fillSelected() {
     if (state.busy) return;
     refreshRows();
+    if (state.rows.some(row => row.id === 'company_desc' || row.kind === 'faq' || row.id === 'text_desc')) {
+      await ensureCompanyEditors();
+      refreshRows();
+    }
     const selected = state.rows.filter(row => row.selected && row.selectable);
     if (!selected.length) {
       toast('没有可填写的字段');
       return;
     }
-    if (selected.some(row => row.id === 'company_desc' || row.kind === 'faq')) {
-      await ensureCompanyEditors();
-      refreshRows();
-    }
-    const companyReady = companySectionLoaded();
-    const targets = companyReady
+    const detailReady = companySectionLoaded() && textDescLoaded();
+    const targets = detailReady
       ? selected
-      : selected.filter(row => row.id !== 'company_desc' && row.kind !== 'faq');
+      : selected.filter(row => row.id !== 'company_desc' && row.kind !== 'faq' && row.id !== 'text_desc');
     if (targets.length < selected.length) {
-      toast('公司信息区域尚未加载，请先滚动到「2. 公司介绍」；本次跳过公司介绍和 FAQ');
+      toast('公司介绍或商品卖点区域尚未加载，请滚动到对应区域；本次已跳过');
     }
     if (!targets.length) {
-      toast('公司信息区域尚未加载，请先滚动到「2. 公司介绍」');
+      toast('公司介绍或商品卖点区域尚未加载，请滚动到对应区域');
       return;
     }
     state.busy = true;

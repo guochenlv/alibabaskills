@@ -268,11 +268,14 @@ async function mountCompanyEditors(tabId) {
       };
       const desc = mount('#struct-companyDesc .info-content > div');
       const faq = mount('#struct-companyFaqDesc .company-faq-desc');
+      const textDesc = mount('#struct-textDesc .info-content > div');
       return {
         desc,
         faq,
+        textDesc,
         descReady: !!document.querySelector('#struct-companyDesc textarea'),
-        faqRows: document.querySelectorAll('#struct-companyFaqDesc input[placeholder="请输入问题"]').length
+        faqRows: document.querySelectorAll('#struct-companyFaqDesc input[placeholder="请输入问题"]').length,
+        textDescReady: !!document.querySelector('#struct-textDesc [contenteditable="true"]')
       };
     }
   });

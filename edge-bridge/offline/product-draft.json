@@ -86,6 +86,15 @@
     "Packing": "Poly bag, export carton"
   },
   "custom_attribute_sources": "reference_listing",
+  "selling_points": [
+    "N Type male plug, straight cable-mount design",
+    "Solderless clamp / compression termination",
+    "Nickel-plated brass body with gold-plated brass center contact",
+    "PTFE insulator and rubber gasket",
+    "Compatible with LMR300, 5D-FB and RG6 cables",
+    "Compact 42.1 mm overall length, 8.1 mm maximum diameter",
+    "5/8-24 UNEF-2B coupling thread"
+  ],
   "moq": {
     "value": 100,
     "unit": "piece",

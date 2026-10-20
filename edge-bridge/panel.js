@@ -230,6 +230,19 @@
         <div id="imageResult" class="muted small"></div>
       </div>
 
+      <div class="card">
+        <div class="row between">
+          <div class="label">公司图集</div>
+          <div class="muted small" id="companyImageSummary">尚未读取</div>
+        </div>
+        <ol id="companyImageList" class="images"><li class="muted">未载入配置</li></ol>
+        <div class="row gap">
+          <button class="btn" id="scanCompanyImagesBtn">读取公司图集</button>
+          <button class="btn primary" id="uploadCompanyImagesBtn" disabled>上传公司图集</button>
+        </div>
+        <div id="companyImageResult" class="muted small"></div>
+      </div>
+
       <div class="foot">不会点击保存或发布。请人工检查后手动提交。</div>
     </div>
   </div>`;
@@ -1427,6 +1440,7 @@
     }
     renderAll();
     saveStored();
+    loadCompanyImagePlan();
     autoRefreshUntilReady();
     checkBridge();
     setInterval(checkBridge, 20000);

@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-10-19T08:20:55.422Z",
+  "mode": "new_product",
+  "language": "en",
+  "category": {
+    "suggested_path_en": "Electronic Components, Accessories & Telecommunications > Connectors & Accessories > Coaxial Connectors",
+    "suggested_path_zh": "电子元器件、配件及通讯 >> 连接器及配件 >> 同轴连接器",
+    "selection": "manual_required",
+    "note": "Category must be selected manually before filling because category attributes differ."
+  },
+  "title": "EZ Solderless N Type Male Plug Connector for LMR300 5D-FB RG6 Coaxial Cable, 50 Ohm RF Clamp Connector, No Crimp Tool",
+  "title_length": 117,
+  "title_max_length": 128,
+  "keywords": [
+    "N Type Male Connector",
+    "Solderless Coaxial Connector",
+    "LMR300 RG6 RF Connector"
+  ],
+  "description_html": "<p><strong>EZ Solderless N Type Male Plug Connector</strong> is a straight, cable-mount 50&nbsp;Ohm RF connector for LMR300, 5D-FB and RG6 coaxial cables. The clamp-style body compresses the braid with a tail nut and rubber gasket, so no crimp tool or soldering is required.</p>\n<h3>Key Features</h3>\n<ul>\n  <li>N Type male plug, straight cable-mount design</li>\n  <li>Solderless clamp / compression termination</li>\n  <li>Nickel-plated brass body with gold-plated brass center contact</li>\n  <li>PTFE insulator and rubber gasket</li>\n  <li>Compatible with LMR300, 5D-FB and RG6 cables</li>\n  <li>Compact 42.1 mm overall length, 8.1 mm maximum diameter</li>\n  <li>5/8-24 UNEF-2B coupling thread</li>\n</ul>\n<h3>Specifications</h3>\n<table border=\"1\" cellspacing=\"0\" cellpadding=\"6\">\n  <tbody>\n    <tr><td><strong>Connector Type</strong></td><td>N Type male plug</td></tr>\n    <tr><td><strong>Impedance</strong></td><td>50 Ohm</td></tr>\n    <tr><td><strong>Frequency Range</strong></td><td>DC - 18 GHz</td></tr>\n    <tr><td><strong>VSWR</strong></td><td>≤1.25:1 typical</td></tr>\n    <tr><td><strong>Body Material</strong></td><td>Nickel-plated brass</td></tr>\n    <tr><td><strong>Center Contact</strong></td><td>Gold-plated brass</td></tr>\n    <tr><td><strong>Insulator</strong></td><td>PTFE</td></tr>\n    <tr><td><strong>Termination</strong></td><td>Solderless clamp / nut compression</td></tr>\n    <tr><td><strong>Cable Compatibility</strong></td><td>LMR300 / 5D-FB / RG6</td></tr>\n    <tr><td><strong>Thread</strong></td><td>5/8-24 UNEF-2B</td></tr>\n    <tr><td><strong>Overall Length</strong></td><td>42.1 mm</td></tr>\n    <tr><td><strong>Maximum Diameter</strong></td><td>8.1 mm</td></tr>\n  </tbody>\n</table>\n<h3>Applications</h3>\n<p>Antenna feeders, RF cable assemblies, wireless communication systems, telecom equipment, test instruments and other 50 Ohm coaxial connections.</p>\n<h3>Installation</h3>\n<p>Prepare the cable, slide on the tail nut and gasket, insert the cable into the body, then tighten the tail nut to compress the braid. No soldering iron, flux or crimp tool is required.</p>\n<h3>Package Contents</h3>\n<p>1 x N Type male connector, 1 x clamp ring, 1 x gasket, 1 x washer, 1 x tail nut.</p>\n<h3>Customization</h3>\n<p>OEM and ODM orders are welcome. Custom plating, cable groups and private labeling are available on request.</p>",
+  "description_text": "EZ Solderless N Type Male Plug Connector is a straight, cable-mount 50 Ohm RF connector for LMR300, 5D-FB and RG6 coaxial cables. The clamp-style body compresses the braid with a tail nut and rubber gasket, so no crimp tool or soldering is required.\n\nKey Features\n\n  - N Type male plug, straight cable-mount design\n\n  - Solderless clamp / compression termination\n\n  - Nickel-plated brass body with gold-plated brass center contact\n\n  - PTFE insulator and rubber gasket\n\n  - Compatible with LMR300, 5D-FB and RG6 cables\n\n  - Compact 42.1 mm overall length, 8.1 mm maximum diameter\n\n  - 5/8-24 UNEF-2B coupling thread\n\nSpecifications\n\n    Connector Type | N Type male plug\n\n    Impedance | 50 Ohm\n\n    Frequency Range | DC - 18 GHz\n\n    VSWR | ≤1.25:1 typical\n\n    Body Material | Nickel-plated brass\n\n    Center Contact | Gold-plated brass\n\n    Insulator | PTFE\n\n    Termination | Solderless clamp / nut compression\n\n    Cable Compatibility | LMR300 / 5D-FB / RG6\n\n    Thread | 5/8-24 UNEF-2B\n\n    Overall Length | 42.1 mm\n\n    Maximum Diameter | 8.1 mm\n\nApplications\n\nAntenna feeders, RF cable assemblies, wireless communication systems, telecom equipment, test instruments and other 50 Ohm coaxial connections.\n\nInstallation\n\nPrepare the cable, slide on the tail nut and gasket, insert the cable into the body, then tighten the tail nut to compress the braid. No soldering iron, flux or crimp tool is required.\n\nPackage Contents\n\n1 x N Type male connector, 1 x clamp ring, 1 x gasket, 1 x washer, 1 x tail nut.\n\nCustomization\n\nOEM and ODM orders are welcome. Custom plating, cable groups and private labeling are available on request.",
+  "attributes": {
+    "Type": "Coaxial Clamp Connector",
+    "Model Number": "EZ-N-M-CL-LMR300",
+    "Product Name": "N Type Male Coaxial Connector",
+    "Product Type": "N Type Male Plug Connector",
+    "Connector Series": "N Type",
+    "Gender": "Male",
+    "Orientation": "Straight",
+    "Mounting Type": "Cable Mount",
+    "Termination Style": "Solderless Clamp / Compression",
+    "Impedance": "50 Ohm",
+    "Frequency Range": "DC - 18 GHz",
+    "VSWR": "≤1.25:1 typical",
+    "Body Material": "Nickel-plated brass",
+    "Center Contact": "Gold-plated brass",
+    "Insulator Material": "PTFE",
+    "Cable Compatibility": "LMR300 / 5D-FB / RG6",
+    "Thread": "5/8-24 UNEF-2B",
+    "Overall Length": "42.1 mm",
+    "Maximum Diameter": "8.1 mm",
+    "Application": "RF / Antenna / Telecom",
+    "OEM/ODM": "Available",
+    "Place of Origin": "{{company.origin}}",
+    "Brand Name": "{{company.brand}}",
+    "Manufacturer Batch": "{{company.manufacturer_batch}}",
+    "Packing": "Poly bag + export carton"
+  },
+  "attribute_sources": {
+    "Type": "reference_listing",
+    "Model Number": "reference_listing",
+    "Product Name": "images",
+    "Product Type": "images + reference_listing",
+    "Connector Series": "images + reference_listing",
+    "Gender": "images",
+    "Orientation": "images",
+    "Mounting Type": "images",
+    "Termination Style": "images + reference_listing",
+    "Impedance": "reference_listing",
+    "Frequency Range": "reference_listing",
+    "VSWR": "reference_listing",
+    "Body Material": "images + reference_listing",
+    "Center Contact": "images + reference_listing",
+    "Insulator Material": "reference_listing",
+    "Cable Compatibility": "reference_listing",
+    "Thread": "engineering_drawing",
+    "Overall Length": "engineering_drawing",
+    "Maximum Diameter": "engineering_drawing",
+    "Application": "inferred",
+    "OEM/ODM": "default",
+    "Place of Origin": "plugin_config",
+    "Brand Name": "plugin_config",
+    "Manufacturer Batch": "plugin_config",
+    "Packing": "reference_listing + default"
+  },
+  "custom_attributes": {
+    "Series": "EZ Solderless Clamp",
+    "Termination": "Solderless clamp, nut compression",
+    "Impedance": "50 Ohm",
+    "Frequency": "DC - 18 GHz",
+    "VSWR": "≤1.25:1 typ.",
+    "Structure": "Straight male plug",
+    "Body": "Nickel plated brass",
+    "Cable": "LMR300 / 5D-FB / RG6",
+    "OEM Service": "Custom plating, cable group, private label",
+    "Packing": "Poly bag, export carton"
+  },
+  "custom_attribute_sources": "reference_listing",
+  "moq": {
+    "value": 100,
+    "unit": "piece",
+    "source": "default",
+    "note": "Generic starting MOQ; confirm with factory."
+  },
+  "price": {
+    "currency": "USD",
+    "tiers": [],
+    "reference_range": {
+      "min": 2.5,
+      "max": 3.2,
+      "currency": "USD",
+      "source": "reference_listing",
+      "note": "Existing listing price; confirm before reuse."
+    },
+    "source": "missing",
+    "note": "Business-sensitive; fill manually."
+  },
+  "packaging": {
+    "method": "Poly bag + export carton",
+    "size": "",
+    "weight": "",
+    "source": "default",
+    "note": "Carton size and gross weight need actual packing data."
+  },
+  "lead_time": {
+    "min_days": 15,
+    "max_days": 30,
+    "source": "default",
+    "note": "Generic lead time; confirm with production capacity."
+  },
+  "images": [
+    {
+      "file": "images/H265d3a3f0d9143fabe802aa4eb5cb93dH.png",
+      "role": "main",
+      "order": 1,
+      "note": "front / side product view"
+    },
+    {
+      "file": "images/H39ea0534a51645caa3e83209e10e4fca2.png",
+      "role": "gallery",
+      "order": 2,
+      "note": "isometric view"
+    },
+    {
+      "file": "images/H397dbe03078d4b20b5039e906cff3a2dE.png",
+      "role": "gallery",
+      "order": 3,
+      "note": "exploded view / kit contents"
+    },
+    {
+      "file": "images/Hc4e4dd8a8cb448cd823f1f01631ce63eW.png",
+      "role": "specification",
+      "order": 4,
+      "note": "42.1 mm overall length"
+    },
+    {
+      "file": "images/Hde9b53453af141cb806073afd841a0b7R.png",
+      "role": "specification",
+      "order": 5,
+      "note": "engineering drawing: 42.1 mm, 5/8-24 UNEF-2B, 8.1 mm diameter"
+    }
+  ],
+  "company_profile": {
+    "source": "plugin_config",
+    "resolved": false,
+    "required_at_publish": true,
+    "fields": {
+      "brand": "{{company.brand}}",
+      "origin": "{{company.origin}}",
+      "manufacturer_batch": "{{company.manufacturer_batch}}",
+      "company_name": "{{company.name}}"
+    },
+    "template": "output/company-profile.template.json",
+    "note": "Company information is not generated. The plugin must resolve these placeholders from user settings; do not fill unresolved placeholders."
+  },
+  "certifications": {
+    "value": [],
+    "source": "missing",
+    "note": "Reference listing shows CE; confirm applicability before publishing."
+  },
+  "missing": [
+    {
+      "field": "price",
+      "reason": "Not visible in images and business-sensitive.",
+      "action": "Fill manually in the plugin."
+    },
+    {
+      "field": "moq",
+      "reason": "Generic 100 pcs placeholder.",
+      "action": "Confirm with factory."
+    },
+    {
+      "field": "packaging.size",
+      "reason": "No carton dimensions in images.",
+      "action": "Provide carton size."
+    },
+    {
+      "field": "packaging.weight",
+      "reason": "No gross weight in images.",
+      "action": "Provide gross weight."
+    },
+    {
+      "field": "lead_time",
+      "reason": "Generic 15-30 days placeholder.",
+      "action": "Confirm production lead time."
+    },
+    {
+      "field": "certifications",
+      "reason": "No certification marks visible; reference listing shows CE.",
+      "action": "Confirm CE/RoHS applicability."
+    },
+    {
+      "field": "brand",
+      "reason": "Company branding belongs to plugin configuration; reference listing shows Worldpeak.",
+      "action": "Set brand in plugin settings."
+    },
+    {
+      "field": "place_of_origin",
+      "reason": "Origin belongs to plugin configuration; reference listing shows Jiangsu, China.",
+      "action": "Set origin in plugin settings."
+    },
+    {
+      "field": "manufacturer_batch",
+      "reason": "Batch code is user-managed.",
+      "action": "Set batch in plugin settings."
+    },
+    {
+      "field": "model_number",
+      "reason": "Reference listing shows EZ-N-M-CL-LMR300; not visible in images.",
+      "action": "Confirm model number."
+    },
+    {
+      "field": "cable_compatibility",
+      "reason": "Reference listing states LMR300 / 5D-FB / RG6; not visible in images.",
+      "action": "Confirm cable compatibility."
+    },
+    {
+      "field": "impedance_frequency_vswr",
+      "reason": "Reference listing values; not visible in images.",
+      "action": "Confirm RF specifications."
+    },
+    {
+      "field": "waterproof_rating",
+      "reason": "No IP rating visible; do not claim waterproofing.",
+      "action": "Confirm if an IP rating applies."
+    },
+    {
+      "field": "company_profile",
+      "reason": "Company information must come from plugin configuration.",
+      "action": "Fill in plugin settings."
+    }
+  ],
+  "reference_listing": {
+    "item_id": "1601982221043",
+    "title": "EZ Solderless Clamp N Type Male Plug Connector for LMR300 5D-FB RG6 Cable, No Crimp Tool Needed, Bulk Supply",
+    "category_zh": "电子元器件、配件及通讯 >> 连接器及配件 >> 同轴连接器",
+    "url": "https://post.alibaba.com/product/publish.htm?spm=a2747.product_manager.0.0.583a71d21mcYbq&itemId=1601982221043",
+    "note": "Used as a reference for specifications; confirm before publishing."
+  }
+}

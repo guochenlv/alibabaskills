@@ -1,0 +1,9 @@
+{
+  "name": "alibaba-product-draft",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Alibaba semi-automatic product draft and Edge fill panel",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  }
+}

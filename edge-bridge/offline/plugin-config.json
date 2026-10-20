@@ -1,0 +1,56 @@
+{
+  "brand": "Worldpeak",
+  "origin": "China",
+  "province": "Jiangsu",
+  "manufacturer_batch": "2026-Q4",
+  "company_name": "Zhenjiang Worldpeak Communication Co., Ltd.",
+  "company_description": "Factory area:located in Zhenjiang City, Jiangsu Province (close to Shanghai)\n4 automatic production lines equipped with 20 sets of professional production equipment\n3 full-time R&D engineers specializing in RF structure optimization and material process improvement, capable of generating accurate CAD drawings within 2 hours\n5 full-time QC inspectors implementing full-process quality control\nProvide authoritative factory inspection reports with videos, 360° panoramic views and VR live streaming, certified by TUV\nRheinland Professional assembly line design ensures product quality and production efficiency\nMore than 1,800 product types; some products can be shipped on the same day at the earliest, and bulk orders can be delivered within 15 days\nOwn a variety of cutting-edge products with exclusive design and manufacturing\nAdopt modular design to achieve rapid response, supporting foreign trade orders with \"small batches, multiple styles and short lead times\"\nFull-process automated encapsulation and packaging, realizing full-link automation from manufacturing to delivery with high capacity utilization\nHigh product qualification rate; professional testing equipment guarantees product quality\nIntegrate production, inventory and sales data via professional software to achieve real-time monitoring and automated processes\nOptimize logistics and distribution routes; professional logistics team handles customs declaration, foreign exchange settlement and other procedures\nFormulate reasonable production plans and dynamically allocate human and equipment resources to ensure on-time order delivery\nCore partner of many Fortune Global 500 enterprises\nSolve the loss and interference problems in high-frequency signal transmission, improving the stability and reliability of\ncommunication systems\nMeet customized requirements for multiple scenarios; support OEM/ODM design and rapid prototyping to shorten customers' product development cycles",
+  "company_faqs": [
+    {
+      "question": "Will you guide the use and installation?",
+      "answer": "Of course, we will provide technical support and remote guidance throughout the process."
+    },
+    {
+      "question": "What payment methods do you support?",
+      "answer": "Common payment methods include: T/T,D/P D/A,MoneyGram,Credit Card,PayPal,Western Union,Cash,Escrow."
+    },
+    {
+      "question": "Can you do design for us?",
+      "answer": "Yes, we do OEM and ODM service. We have good experience development."
+    },
+    {
+      "question": "I don't know what type of connector/cable I need?",
+      "answer": "Don't worry, you can send us photos or specifications of your product, and we will have professional\nengineers to follow up. We can also make samples and customize products."
+    }
+  ],
+  "year_established": "2015",
+  "main_markets": ["Western Europe", "North America", "Eastern Europe"],
+  "company_images": [
+    { "file": "images/company/company-overview-1.png", "album": "公司介绍", "album_en": "Company overview", "order": 1 },
+    { "file": "images/company/company-overview-2.jpg", "album": "公司介绍", "album_en": "Company overview", "order": 2 },
+    { "file": "images/company/company-overview-3.png", "album": "公司介绍", "album_en": "Company overview", "order": 3 },
+    { "file": "images/company/company-overview-4.png", "album": "公司介绍", "album_en": "Company overview", "order": 4 },
+    { "file": "images/company/company-advantage-1.png", "album": "公司优势", "album_en": "Competitive advantages", "order": 5 },
+    { "file": "images/company/company-advantage-2.png", "album": "公司优势", "album_en": "Competitive advantages", "order": 6 },
+    { "file": "images/company/company-advantage-3.png", "album": "公司优势", "album_en": "Competitive advantages", "order": 7 },
+    { "file": "images/company/trade-show-1.jpg", "album": "参展情况", "album_en": "Trade show participation", "order": 8 },
+    { "file": "images/company/packaging-1.png", "album": "包装运输", "album_en": "Packaging & shipping specifications", "order": 9 }
+  ],
+  "publish_defaults": {
+    "currency": "USD",
+    "moq": 100,
+    "moq_unit": "piece",
+    "price_min": 2.5,
+    "price_max": 3.2,
+    "lead_time_days": {
+      "min": 15,
+      "max": 30
+    },
+    "packaging_method": "Poly bag + export carton",
+    "carton_size_cm": "",
+    "gross_weight_kg": ""
+  },
+  "schema_version": "1.0",
+  "source": "reference_listing",
+  "notes": "First-version defaults copied from the reference listing. Company name, company description, and FAQs come from the reference listing; edit them in the plugin panel."
+}

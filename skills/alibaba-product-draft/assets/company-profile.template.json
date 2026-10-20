@@ -1,0 +1,22 @@
+{
+  "brand": "",
+  "origin": "",
+  "province": "",
+  "manufacturer_batch": "",
+  "company_name": "",
+  "publish_defaults": {
+    "currency": "USD",
+    "moq": 100,
+    "moq_unit": "piece",
+    "price_min": 0,
+    "price_max": 0,
+    "lead_time_days": {
+      "min": 15,
+      "max": 30
+    },
+    "packaging_method": "Poly bag + export carton",
+    "carton_size_cm": "",
+    "gross_weight_kg": ""
+  },
+  "notes": "Company values are resolved by the Edge panel. Leave blank until the user provides them; do not generate them from product images."
+}

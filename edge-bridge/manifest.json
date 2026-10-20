@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Alibaba Local Bridge",
+  "version": "0.7.0",
+  "description": "Local-only bridge for Codex to inspect, fill company info and upload images on the current Alibaba tab.",
+  "permissions": ["tabs", "debugger", "alarms", "storage", "scripting"],
+  "host_permissions": [
+    "https://*.alibaba.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.alibaba.com/*"],
+      "js": ["content.js", "panel.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src http://127.0.0.1:8765;"
+  },
+  "action": {
+    "default_title": "Alibaba Local Bridge"
+  }
+}

@@ -1,0 +1,27 @@
+# 数据与产物（不入库）
+产品/
+images/
+output/
+dist/
+node_modules/
+.edge-debug-profile/
+
+# 截图 / 审计 / 页面抓取产物
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.avif
+page-audit.json
+page-audit.md
+page-inventory.json
+form-groups.json
+field-structure.json
+controls-mapped.json
+input-chains.json
+attributes.json
+.convert-images.js
+
+# 日志与临时文件
+*.log
+patch*.txt

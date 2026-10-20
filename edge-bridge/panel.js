@@ -8,6 +8,12 @@
   const TOKEN = 'local-alibaba-bridge-2026';
   const BASE = 'http://127.0.0.1:8765';
   const STORAGE_KEY = 'alibabaDraftPanel.v1';
+  const COMPANY_ALBUMS = [
+    { album: '公司介绍', albumEn: 'Company overview' },
+    { album: '公司优势', albumEn: 'Competitive advantages' },
+    { album: '参展情况', albumEn: 'Trade show participation' },
+    { album: '包装运输', albumEn: 'Packaging & shipping specifications' }
+  ];
 
   const DEFAULT_CONFIG = {
     brand: 'Worldpeak',
@@ -43,7 +49,8 @@
     imageBusy: false,
     imageInfo: { scanned: false, count: 0, hashes: [], placeholder: false, max: 6 },
     companyImagePlan: null,
-    companyImageBusy: false
+    companyImageBusy: false,
+    companyImageImportBusy: false
   };
 
   const highlightSaved = new Map();
@@ -87,7 +94,8 @@
     .link { border: 0; background: none; color: #2563eb; cursor: pointer; font-size: 11.5px; padding: 0; }
     .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 8px; margin-top: 8px; }
     .grid2 label { display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: #4b5563; }
-    .grid2 input { border: 1px solid #d1d5db; border-radius: 5px; padding: 4px 6px; font-size: 12px; width: 100%; }
+    .grid2 input, .grid2 select { border: 1px solid #d1d5db; border-radius: 5px; padding: 4px 6px; font-size: 12px; width: 100%; background: #fff; }
+    .company-upload { margin-top: 8px; border-top: 1px solid #eef0f2; padding-top: 7px; }
     .cfg-wide { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; font-size: 11px; color: #4b5563; }
     .cfg-wide textarea, .faq-row input, .faq-row textarea { border: 1px solid #d1d5db; border-radius: 5px; padding: 4px 6px; font: inherit; font-size: 12px; width: 100%; }
     .cfg-wide textarea, .faq-row textarea { resize: vertical; }
@@ -167,6 +175,22 @@
           <label>毛重(kg)<input id="cfgWeight"></label>
         </div>
         <label class="cfg-wide">公司介绍（英文，≤2000 字符）<textarea id="cfgCompanyDesc" rows="5" maxlength="2000"></textarea></label>
+        <div class="company-upload">
+          <div class="row between">
+            <span class="label">公司图集图片</span>
+            <span class="muted small">保存到本机 images/company</span>
+          </div>
+          <div class="grid2">
+            <label>相册<select id="cfgCompanyAlbum">${COMPANY_ALBUMS.map(item => `<option value="${item.album}" data-en="${item.albumEn}">${item.album}</option>`).join('')}</select></label>
+            <label>英文相册名<input id="cfgCompanyAlbumEn" readonly></label>
+          </div>
+          <input id="companyImageInput" type="file" accept=".png,.jpg,.jpeg,image/png,image/jpeg" multiple hidden>
+          <div class="row gap">
+            <button class="btn primary" id="pickCompanyImagesBtn">选择图片并保存</button>
+            <span class="muted small">PNG/JPG，可多选；保存后再点下方“上传公司图集”</span>
+          </div>
+          <div id="companyImageImportResult" class="muted small"></div>
+        </div>
         <div class="faq-config">
           <div class="row between">
             <span class="label">公司 FAQ</span>
@@ -816,6 +840,85 @@
     }
   }
 
+  function updateCompanyAlbumEn() {
+    const select = $('#cfgCompanyAlbum');
+    const input = $('#cfgCompanyAlbumEn');
+    if (!select || !input) return;
+    const option = select.options[select.selectedIndex];
+    input.value = option ? (option.dataset.en || '') : '';
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const value = String(reader.result || '');
+        const comma = value.indexOf(',');
+        resolve(comma >= 0 ? value.slice(comma + 1) : '');
+      };
+      reader.onerror = () => reject(new Error('读取图片失败'));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  async function importCompanyImages(fileList) {
+    if (state.companyImageImportBusy) return;
+    const files = Array.from(fileList || []);
+    if (!files.length) return;
+    const album = String($('#cfgCompanyAlbum').value || '').trim();
+    const albumEn = String($('#cfgCompanyAlbumEn').value || '').trim();
+    if (!album) {
+      toast('请选择公司图集相册');
+      return;
+    }
+
+    state.companyImageImportBusy = true;
+    const button = $('#pickCompanyImagesBtn');
+    const resultEl = $('#companyImageImportResult');
+    if (button) button.disabled = true;
+    if (resultEl) resultEl.textContent = `正在保存 ${files.length} 张图片到本机…`;
+
+    const added = [];
+    const failed = [];
+    try {
+      for (const file of files) {
+        if (!/\.(png|jpe?g)$/i.test(file.name)) {
+          failed.push({ name: file.name, error: 'unsupported_file_type' });
+          continue;
+        }
+        if (file.size > 15 * 1024 * 1024) {
+          failed.push({ name: file.name, error: 'file_too_large' });
+          continue;
+        }
+        try {
+          const dataBase64 = await fileToBase64(file);
+          const result = await bridgeFetch('/company-images', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ album, album_en: albumEn, files: [{ name: file.name, data_base64: dataBase64 }] })
+          }, 60000);
+          added.push(...(result.added || []));
+          failed.push(...(result.failed || []));
+          if (result.config && Array.isArray(result.config.company_images)) {
+            state.config = mergeConfig(state.config, { company_images: result.config.company_images });
+          }
+        } catch (error) {
+          failed.push({ name: file.name, error: String((error && error.message) || error) });
+        }
+      }
+      await saveStored();
+      await loadCompanyImagePlan();
+      const failedText = failed.slice(0, 3).map(item => `${item.name}（${item.error}）`).join('、');
+      if (resultEl) {
+        resultEl.textContent = `已保存 ${added.length} 张${failed.length ? `，失败 ${failed.length} 张：${failedText}` : ''}${added.length ? '。请点击下方“上传公司图集”' : ''}`;
+      }
+      toast(added.length ? `已保存 ${added.length} 张公司图集图片` : '没有保存成功');
+    } finally {
+      state.companyImageImportBusy = false;
+      if (button) button.disabled = false;
+    }
+  }
+
   function faqRowHtml(faq, index) {
     return `<div class="faq-row" data-index="${index}">
       <div class="faq-top"><span class="muted small">Q${index + 1}</span><button type="button" class="btn faq-del" data-index="${index}">删除</button></div>
@@ -1291,6 +1394,7 @@
   }
 
   function wireEvents() {
+    updateCompanyAlbumEn();
     $('#collapseBtn').addEventListener('click', () => {
       const panel = $('#panel');
       panel.classList.toggle('collapsed');
@@ -1386,6 +1490,16 @@
       toast('已扫描页面图片');
     });
     $('#uploadImagesBtn').addEventListener('click', uploadMissingImages);
+    $('#cfgCompanyAlbum').addEventListener('change', updateCompanyAlbumEn);
+    $('#pickCompanyImagesBtn').addEventListener('click', () => $('#companyImageInput').click());
+    $('#companyImageInput').addEventListener('change', async event => {
+      const files = event.target.files;
+      try {
+        await importCompanyImages(files);
+      } finally {
+        event.target.value = '';
+      }
+    });
     $('#scanCompanyImagesBtn').addEventListener('click', async () => {
       await loadCompanyImagePlan();
       toast('已读取公司图集配置');

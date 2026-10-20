@@ -202,6 +202,83 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  if (req.method === 'POST' && url.pathname === '/company-images') {
+    let body = '';
+    req.on('data', chunk => {
+      body += chunk;
+      if (body.length > 30_000_000) req.destroy();
+    });
+    req.on('end', () => {
+      try {
+        const payload = JSON.parse(body || '{}');
+        const album = String(payload.album || '').trim();
+        const albumEn = String(payload.album_en || '').trim();
+        const files = Array.isArray(payload.files) ? payload.files : [];
+        if (!album) throw new Error('album is required');
+        if (album.length > 80 || albumEn.length > 120) throw new Error('album name is too long');
+        if (!files.length) throw new Error('files is required');
+
+        const configPath = path.join(__dirname, 'output', 'plugin-config.json');
+        const templatePath = path.join(__dirname, 'output', 'company-profile.template.json');
+        let cfg = {};
+        try {
+          cfg = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        } catch (e) {
+          try {
+            cfg = JSON.parse(fs.readFileSync(templatePath, 'utf8'));
+          } catch (templateError) {}
+        }
+        if (!Array.isArray(cfg.company_images)) cfg.company_images = [];
+
+        const imageDir = path.resolve(__dirname, 'images', 'company');
+        fs.mkdirSync(imageDir, { recursive: true });
+        let nextOrder = Math.max(0, ...cfg.company_images.map(item => Number(item && item.order) || 0)) + 1;
+        const added = [];
+        const failed = [];
+
+        for (const file of files.slice(0, 20)) {
+          const original = path.basename(String((file && file.name) || ''));
+          const ext = path.extname(original).toLowerCase();
+          try {
+            if (!/^\.(png|jpe?g)$/.test(ext)) throw new Error('unsupported_file_type');
+            const data = Buffer.from(String((file && file.data_base64) || ''), 'base64');
+            if (!data.length) throw new Error('empty_file');
+            if (data.length > 15 * 1024 * 1024) throw new Error('file_too_large');
+            const isPng = data.length >= 8 && data.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
+            const isJpeg = data.length >= 3 && data[0] === 0xff && data[1] === 0xd8 && data[2] === 0xff;
+            if (!isPng && !isJpeg) throw new Error('invalid_image_data');
+
+            const rawStem = path.basename(original, ext).replace(/[^A-Za-z0-9._-]+/g, '-').replace(/^[-_.]+|[-_.]+$/g, '');
+            const stem = rawStem || `company-${randomUUID().slice(0, 8)}`;
+            let fileName = `${stem}${ext}`;
+            let filePath = path.join(imageDir, fileName);
+            let suffix = 2;
+            while (fs.existsSync(filePath)) {
+              fileName = `${stem}-${suffix}${ext}`;
+              filePath = path.join(imageDir, fileName);
+              suffix++;
+            }
+            fs.writeFileSync(filePath, data);
+            const rel = `images/company/${fileName}`;
+            cfg.company_images.push({ file: rel, album, album_en: albumEn, order: nextOrder++ });
+            added.push({ file: rel, name: fileName, album });
+          } catch (e) {
+            failed.push({ name: original || '(unnamed)', error: String((e && e.message) || e) });
+          }
+        }
+
+        if (added.length) {
+          fs.mkdirSync(path.dirname(configPath), { recursive: true });
+          fs.writeFileSync(configPath, `${JSON.stringify(cfg, null, 2)}\n`, 'utf8');
+        }
+        json(res, 200, { ok: true, added, failed, config: cfg });
+      } catch (e) {
+        json(res, 400, { ok: false, error: String((e && e.message) || e) });
+      }
+    });
+    return;
+  }
+
   if (req.method === 'GET' && url.pathname === '/image') {
     const name = url.searchParams.get('name') || '';
     if (!/^[A-Za-z0-9._-]+$/.test(name)) {

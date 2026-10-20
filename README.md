@@ -78,6 +78,7 @@ node "$skill\scripts\validate-draft.js" --root .
 - 从本地载入草稿：通过桥接读取 `output/product-draft.json`
 - 导入 JSON：不依赖桥接，手动选择草稿文件
 - 公司配置：修改公司名、公司介绍、公司 FAQ、品牌、原产地、批次、MOQ、价格、交期、包装
+- 公司图集图片：在公司配置里选择相册并多选 PNG/JPG，图片保存到 `images/company/` 并自动写入 `output/plugin-config.json`；随后在“公司图集”中点“上传公司图集”
 - 读取页面并对比：只读页面，生成字段差异，不修改页面
 - 只填空白字段：默认开启；取消后可覆盖冲突字段
 - 填充选中项：逐项写入并回读校验，失败会列出来
@@ -86,6 +87,8 @@ node "$skill\scripts\validate-draft.js" --root .
 - 复制描述：复制 HTML 或纯文本，富文本编辑器手动粘贴
 - 商品图片：扫描页面已有图片，自动上传草稿中缺失的图片
 - 公司图集：按 `output/plugin-config.json` 的 `company_images` 自动上传到公司介绍/公司优势/参展情况/包装运输图集
+
+公司图集图片导入需要本地桥运行。离线模式下只能使用扩展内置配置，不能从面板保存新图片；仍可在 Alibaba 页面手动上传。
 
 ## 图片上传
 

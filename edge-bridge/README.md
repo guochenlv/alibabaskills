@@ -41,6 +41,7 @@ This copies the extension plus the latest `output/product-draft.json` and `outpu
 - Images: scans the main-image list, skips existing files, and uploads missing draft images through the debugger API
 - Image identity: matches the real `.image-fileName` title first and falls back to the thumbnail URL
 - Company gallery: uploads `company_images` from `output/plugin-config.json` into the 公司介绍/公司优势/参展情况/包装运输 albums on the publish page
+- Company image import: select an album and multiple PNG/JPG files in the company configuration panel; the images are saved to `images/company/`, added to `company_images`, and then uploaded with the company-gallery button. The local bridge must be running
 - Save and publish: never clicked by the panel
 
 Note: the Alibaba company-gallery uploader is flaky. Some images may stay stuck on the page even after the panel reports a timeout. Refreshing the publish page and running the company-gallery upload again is the workaround; the panel never saves or publishes.
